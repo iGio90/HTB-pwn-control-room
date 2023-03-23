@@ -305,8 +305,8 @@ unsigned __int64 configure_engine()
 
 tldr; v3 allows for negative int
 
-1) overwrite the ``exit`` call with function ``user_edit`` where there is ``strncpy`` writing in ``curr_user`` (see the code above)
-2) overwrite ``strncpy`` with ``memcpy`` to avoid null byte termination in the rop
+1) overwrite the ``exit`` plt with function ``user_edit`` where there is ``strncpy`` writing in ``curr_user`` (see the code above)
+2) overwrite ``strncpy`` plt with ``memcpy`` to avoid null byte termination in the rop
 3) overwrite ``curr_user`` address with the stack address
 4) send anything that is not a valid command (1-4) to trigger ``exit``
 5) ``exit`` will jump to ``user_edit`` asking for the new username length (the rop length) which will be now checked against ``curr_user+33`` which already holds a value high enough to pass the first check in ``user_edit`` function.
